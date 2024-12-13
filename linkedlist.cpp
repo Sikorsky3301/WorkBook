@@ -91,7 +91,10 @@ int main()
 	insertathead( head , 15);
 	insertathead(head , 29);
 	insertattail(tail , 88);
-	insertatposition(head , 3 , 90);
+	insertatposition(tail ,head , 3 , 90);
 	print(head);
+	cout << "head " << head -> data << endl;
+	cout << "Tail " << tail -> data << endl;
+	
 	return 0;
 }

@@ -26,12 +26,27 @@ void insertattail(node* &tail , int d){
 	tail = tail -> next ;
 }
 
-void insertatposition(node* &head , int position , int d ){
+
+
+
+
+void insertatposition(node* tail ,node* &head , int position , int d ){
+	
+	if(position == 1){
+		insertathead(head , d);
+	}
+
+
 	node* temp = head ;
 	int cnt = 1 ;
 	while(cnt < position - 1){
 		temp = temp -> next ; 
 		cnt++;
+	}
+
+	if (temp -> next == NULL){
+		insertattail(tail , d);
+		return ;
 	}
 
 	//creating a node for d(data)
@@ -40,6 +55,8 @@ void insertatposition(node* &head , int position , int d ){
 	temp -> next = nodetoinsert; 
 
 }
+
+
 
 void print(node* &head){
 	node* temp = head;
@@ -50,6 +67,11 @@ void print(node* &head){
 	cout << endl;
 
 }
+
+
+
+
+
 
 int main()
 {

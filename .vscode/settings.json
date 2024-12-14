@@ -3,5 +3,6 @@
         "xstring": "cpp",
         "xutility": "cpp",
         "ostream": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

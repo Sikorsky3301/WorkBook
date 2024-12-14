@@ -12,7 +12,18 @@ class node
 		this -> next = NULL;
 	}
 
+	// destructor 
+	~node(){
+		int value = this -> data ;
+		if(this -> next != NULL ){
+			delete next;
+			this -> next = NULL;
+		}
+		cout << "Memory is free for node with data " << value << endl;
+	}
+
 };
+
 
 void insertathead(node* &head , int d){
 	node* temp = new node(d);
@@ -36,7 +47,8 @@ void insertatposition(node* tail ,node* &head , int position , int d ){
 		insertathead(head , d);
 	}
 
-
+    // resolving all the edge cases regarding position 
+	// 1) 
 	node* temp = head ;
 	int cnt = 1 ;
 	while(cnt < position - 1){
@@ -68,6 +80,33 @@ void print(node* &head){
 
 }
 
+//******************************************
+
+void deletenode(node* &head ,int position ){
+	// deleting the start node 
+	if(position == 1){
+		node* temp = head;
+		head = head -> next;
+		temp -> next = NULL;
+		delete temp;
+		// memory free start node 
+	}else{
+		//deleting any middle node
+		node* curr = head ; 
+		node* prev = NULL;
+
+		int cnt = 1 ; 
+		while (cnt <= position){
+			prev = curr;
+			curr = curr -> next;
+			cnt ++ ;
+		}
+		// updating the next pointer of the prev node so that it deetaches from the required one.2->4  ~3
+		prev -> next = curr -> next;
+		curr -> next = NULL ;
+		delete curr;
+	}
+}
 
 
 
@@ -85,9 +124,9 @@ int main()
     // head pointed to new node initially 
 	node* head = node1;
 	node* tail = node1;
-	print(head);
 
 	// inserting at head 
+	cout << endl;
 	insertathead( head , 15);
 	insertathead(head , 29);
 	insertattail(tail , 88);
@@ -95,6 +134,13 @@ int main()
 	print(head);
 	cout << "head " << head -> data << endl;
 	cout << "Tail " << tail -> data << endl;
+	cout << endl;
+	deletenode(head, 1);
+	print(head);
+
+
+	
 	
 	return 0;
+
 }
